@@ -15,7 +15,7 @@ private:
     static int customerCount;
 
 public:
-    Customer(std::string name, std::string address);
+    Customer(const std::string& name, const std::string& address);
 
     void setCustID(int id);
     int getCustID() const;

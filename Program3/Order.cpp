@@ -42,4 +42,5 @@ void Order::displayOrder() const {
     for (int product : productNums) {
         std::cout << product << " ";
     }
+    std::cout << "\n";
 }

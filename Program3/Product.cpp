@@ -1,9 +1,9 @@
 #include "product.h"
-#include "main.h"
+#include "main.h"  // For getCurrentMonthAndYear function
 
 int Product::productCount = 0;
 
-Product::Product(std::string name, std::string description)
+Product::Product(const std::string& name, const std::string& description)
     : productName(name), productDescription(description) {
     productNum = ++productCount;
 
@@ -48,5 +48,5 @@ void Product::displayProduct() const {
     std::cout << "Product Number: " << productNum << "\n"
               << "Name: " << productName << "\n"
               << "Description: " << productDescription << "\n"
-              << productCreationTime;
+              << productCreationTime << "\n";
 }

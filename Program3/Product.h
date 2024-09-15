@@ -13,7 +13,7 @@ private:
     static int productCount;
 
 public:
-    Product(std::string productName, std::string productDescription);
+    Product(const std::string& name, const std::string& description);
 
     void setProductNum(int num);
     int getProductNum() const;

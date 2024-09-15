@@ -1,19 +1,17 @@
 #include "customer.h"
-#include "main.h"  // Ensure this is included
+#include "main.h"  // For getCurrentMonthAndYear function
 
 int Customer::customerCount = 0;
 
-// Constructor
-Customer::Customer(std::string name, std::string address) : name(name), address(address) {
+Customer::Customer(const std::string& name, const std::string& address)
+    : name(name), address(address) {
     custID = ++customerCount;
 
-    // Get current month and year for customer creation
     int month, year;
     getCurrentMonthAndYear(month, year);
     customerCreationTime = "Created: " + std::to_string(month) + "/" + std::to_string(year);
 }
 
-// Setters and Getters
 void Customer::setCustID(int id) {
     custID = id;
 }
@@ -62,5 +60,5 @@ void Customer::displayCustomer() const {
     for (int order : orderNums) {
         std::cout << order << " ";
     }
-    std::cout << "\n" << customerCreationTime;
+    std::cout << "\n" << customerCreationTime << "\n";
 }
