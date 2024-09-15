@@ -1,39 +1,35 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-#include <iostream> // For input-output stream
-#include <ctime>  // For time-related functions
-#include <vector>    // For vector container
+#include <iostream>
+#include <vector>
 #include <string>
-
-using namespace std;
 
 class Customer {
 private:
     int custID;
-    string name;
-    string address;
-    vector<int> orderNums;
-    string customerCreationTime;
+    std::string name;
+    std::string address;
+    std::vector<int> orderNums;
+    std::string customerCreationTime;
     static int customerCount;
 
 public:
-    Customer(string name, string address);  // Constructor
+    Customer(std::string name, std::string address);
 
-    // Getters and setters
     void setCustID(int id);
-    int getCustID() const;  // Declaration of getCustID()
+    int getCustID() const;
 
-    void setName(const string& name);
-    string getName() const;
+    void setName(const std::string& name);
+    std::string getName() const;
 
-    void setAddress(const string& address);
-    string getAddress() const;
+    void setAddress(const std::string& address);
+    std::string getAddress() const;
 
     void addOrder(int orderNum);
-    vector<int> getOrderNums() const;
+    std::vector<int> getOrderNums() const;
 
-    string getCustomerCreationTime() const;
+    std::string getCustomerCreationTime() const;
 
     static int getCustomerCount();
 

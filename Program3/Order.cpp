@@ -1,49 +1,34 @@
-#include "Order.h"
+#include "order.h"
+#include "main.h"  // Ensure this is included
 
-using namespace std;
-
-// Initialize static member
 int Order::orderCount = 0;
 
-// Constructor
-Order::Order(int custID) : custID(custID) {
+Order::Order(int customerID) : customerID(customerID) {
     orderNum = ++orderCount;
-
-    // Get current time for order creation
-    time_t now = time(0);
-    char buffer[26];
-    ctime_s(buffer, sizeof(buffer), &now);
-    orderCreationTime = buffer;
 }
 
-
-// Setters and Getters
 void Order::setOrderNum(int num) {
     orderNum = num;
 }
 
 int Order::getOrderNum() const {
-    return orderNum;   // Ensure this function returns the correct orderNum
+    return orderNum;
 }
 
-void Order::setCustID(int id) {
-    custID = id;
+void Order::setCustomerID(int id) {
+    customerID = id;
 }
 
-int Order::getCustID() const {
-    return custID;
+int Order::getCustomerID() const {
+    return customerID;
 }
 
 void Order::addProduct(int productNum) {
     productNums.push_back(productNum);
 }
 
-vector<int> Order::getProductNums() const {
+std::vector<int> Order::getProductNums() const {
     return productNums;
-}
-
-string Order::getOrderCreationTime() const {
-    return orderCreationTime;
 }
 
 int Order::getOrderCount() {
@@ -51,11 +36,10 @@ int Order::getOrderCount() {
 }
 
 void Order::displayOrder() const {
-    cout << "Order Number: " << orderNum << "\n"
-        << "Customer ID: " << custID << "\n"
-        << "Products: ";
+    std::cout << "Order Number: " << orderNum << "\n"
+              << "Customer ID: " << customerID << "\n"
+              << "Products: ";
     for (int product : productNums) {
-        cout << product << " ";
+        std::cout << product << " ";
     }
-    cout << "\nCreated: " << orderCreationTime;
 }

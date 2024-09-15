@@ -1,20 +1,16 @@
-#include "Product.h"
-
-using namespace std;
+#include "product.h"
+#include "main.h"
 
 int Product::productCount = 0;
 
-Product::Product(string name, string description)
+Product::Product(std::string name, std::string description)
     : productName(name), productDescription(description) {
     productNum = ++productCount;
 
-    // Get current time for product creation
-    time_t now = time(0);
-    char buffer[26];  // Buffer to hold the formatted time string
-    ctime_s(buffer, sizeof(buffer), &now);  // Use ctime_s for safer time conversion
-    productCreationTime = buffer;
+    int month, year;
+    getCurrentMonthAndYear(month, year);
+    productCreationTime = "Created: " + std::to_string(month) + "/" + std::to_string(year);
 }
-
 
 void Product::setProductNum(int num) {
     productNum = num;
@@ -24,23 +20,23 @@ int Product::getProductNum() const {
     return productNum;
 }
 
-void Product::setProductName(const string& name) {
+void Product::setProductName(const std::string& name) {
     productName = name;
 }
 
-string Product::getProductName() const {
+std::string Product::getProductName() const {
     return productName;
 }
 
-void Product::setProductDescription(const string& description) {
+void Product::setProductDescription(const std::string& description) {
     productDescription = description;
 }
 
-string Product::getProductDescription() const {
+std::string Product::getProductDescription() const {
     return productDescription;
 }
 
-string Product::getProductCreationTime() const {
+std::string Product::getProductCreationTime() const {
     return productCreationTime;
 }
 
@@ -49,8 +45,8 @@ int Product::getProductCount() {
 }
 
 void Product::displayProduct() const {
-    cout << "Product Number: " << productNum << "\n"
-        << "Name: " << productName << "\n"
-        << "Description: " << productDescription << "\n"
-        << "Created: " << productCreationTime;
+    std::cout << "Product Number: " << productNum << "\n"
+              << "Name: " << productName << "\n"
+              << "Description: " << productDescription << "\n"
+              << productCreationTime;
 }

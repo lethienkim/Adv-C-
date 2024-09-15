@@ -2,33 +2,29 @@
 #define PRODUCT_H
 
 #include <iostream>
-#include <ctime>
 #include <string>
-
-using namespace std;
 
 class Product {
 private:
     int productNum;
-    string productName;
-    string productDescription;
-    string productCreationTime;
+    std::string productName;
+    std::string productDescription;
+    std::string productCreationTime;
     static int productCount;
 
 public:
-    Product(string productName, string productDescription);  // Constructor
+    Product(std::string productName, std::string productDescription);
 
-    // Getters and setters
     void setProductNum(int num);
     int getProductNum() const;
 
-    void setProductName(const string& name);
-    string getProductName() const;
+    void setProductName(const std::string& name);
+    std::string getProductName() const;
 
-    void setProductDescription(const string& description);
-    string getProductDescription() const;
+    void setProductDescription(const std::string& description);
+    std::string getProductDescription() const;
 
-    string getProductCreationTime() const;
+    std::string getProductCreationTime() const;
 
     static int getProductCount();
 
