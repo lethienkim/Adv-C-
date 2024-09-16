@@ -8,6 +8,18 @@ void getCurrentMonthAndYear(int& month, int& year) {
     year = tm_ptr.tm_year + 1900;
 }
 
+void getTime(int& day, int& month, int& year, int& hour, int& minute, int& second) {
+    time_t epochSeconds = time(NULL);
+    tm tm_ptr;
+    localtime_s(&tm_ptr, &epochSeconds);  // Safe version of localtime
+    day = tm_ptr.tm_mday;
+    month = tm_ptr.tm_mon + 1;  // tm_mon is 0-11, so we add 1
+    year = tm_ptr.tm_year + 1900;
+    hour = tm_ptr.tm_hour;
+    minute = tm_ptr.tm_min;
+    second = tm_ptr.tm_sec;
+}
+
 void outputReport(const std::vector<Customer>& customers, const std::vector<Order>& orders, const std::vector<Product>& products) {
     std::cout << "\n\n--- Customers Report ---\n";
     for (const auto& customer : customers) {

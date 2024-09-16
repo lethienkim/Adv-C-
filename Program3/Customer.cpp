@@ -1,5 +1,5 @@
 #include "customer.h"
-#include "main.h"  // For getCurrentMonthAndYear function
+#include "main.h"
 
 int Customer::customerCount = 0;
 

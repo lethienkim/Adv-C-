@@ -36,4 +36,4 @@ public:
     void displayCustomer() const;
 };
 
-#endif
+#endif // CUSTOMER_H

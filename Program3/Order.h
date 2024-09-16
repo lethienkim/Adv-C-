@@ -9,6 +9,7 @@ private:
     int orderNum;
     int customerID;
     std::vector<int> productNums;
+    std::string orderCreationTime;
     static int orderCount;
 
 public:
@@ -28,4 +29,4 @@ public:
     void displayOrder() const;
 };
 
-#endif
+#endif // ORDER_H

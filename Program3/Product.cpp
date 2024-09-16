@@ -1,5 +1,5 @@
 #include "product.h"
-#include "main.h"  // For getCurrentMonthAndYear function
+#include "main.h"
 
 int Product::productCount = 0;
 

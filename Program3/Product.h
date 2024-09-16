@@ -31,4 +31,4 @@ public:
     void displayProduct() const;
 };
 
-#endif
+#endif // PRODUCT_H

@@ -10,5 +10,6 @@
 
 void getCurrentMonthAndYear(int& month, int& year);
 void outputReport(const std::vector<Customer>& customers, const std::vector<Order>& orders, const std::vector<Product>& products);
+void getTime(int& day, int& month, int& year, int& hour, int& minute, int& second);
 
-#endif
+#endif // MAIN_H

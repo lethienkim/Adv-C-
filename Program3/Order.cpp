@@ -1,10 +1,14 @@
 #include "order.h"
-#include "main.h"  // Ensure this is included
+#include "main.h"
 
 int Order::orderCount = 0;
 
 Order::Order(int customerID) : customerID(customerID) {
     orderNum = ++orderCount;
+
+    int month, year;
+    getCurrentMonthAndYear(month, year);
+    orderCreationTime = "Created: " + std::to_string(month) + "/" + std::to_string(year);
 }
 
 void Order::setOrderNum(int num) {
@@ -42,5 +46,5 @@ void Order::displayOrder() const {
     for (int product : productNums) {
         std::cout << product << " ";
     }
-    std::cout << "\n";
+    std::cout << "\n" << orderCreationTime << "\n";
 }
