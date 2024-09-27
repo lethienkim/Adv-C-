@@ -44,7 +44,7 @@ int main() {
 
     bool running = true;
     while (running) {
-        std::cout << "Please enter the number:\n";
+        std::cout << "\nPlease enter the number:\n";
         std::cout << "1. Add Customer\n2. Add Product\n3. Add Order\n4. View Reports\n5. Exit\n";
         int choice;
         std::cin >> choice;
