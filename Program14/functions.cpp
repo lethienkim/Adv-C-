@@ -3,33 +3,28 @@
 
 void CustomList::insert_beginning(int value) {
     list.insert(list.begin(), value);
+    is_sorted = false;
 }
 
 void CustomList::insert_end(int value) {
     list.push_back(value);
+    is_sorted = false;
 }
 
 void CustomList::delete_beginning() {
-    if (!list.empty()) {
-        list.erase(list.begin());
-    }
-    else {
-        throw std::out_of_range("List is empty");
-    }
+    check_not_empty();
+    list.erase(list.begin());
 }
 
 void CustomList::delete_end() {
-    if (!list.empty()) {
-        list.pop_back();
-    }
-    else {
-        throw std::out_of_range("List is empty");
-    }
+    check_not_empty();
+    list.pop_back();
 }
 
 void CustomList::insert_at(int index, int value) {
-    if (index >= 0 && index <= list.size()) {
+    if (index >= 0 && index <= static_cast<int>(list.size())) {
         list.insert(list.begin() + index, value);
+        is_sorted = false;
     }
     else {
         throw std::out_of_range("Index out of range");
@@ -40,6 +35,7 @@ void CustomList::delete_value(int value) {
     auto it = std::find(list.begin(), list.end(), value);
     if (it != list.end()) {
         list.erase(it);
+        is_sorted = false;
     }
     else {
         throw std::invalid_argument("Value not found in list");
@@ -65,16 +61,20 @@ void CustomList::selection_sort() {
         }
         std::swap(list[i], list[min_index]);
     }
+    is_sorted = true;
 }
 
 void CustomList::merge_sort() {
     if (list.size() > 1) {
         merge_sort_recursive(0, list.size() - 1);
+        is_sorted = true;
     }
 }
 
 int CustomList::binary_search(int value) {
-    selection_sort(); // Ensure the list is sorted
+    if (!is_sorted) {
+        merge_sort();
+    }
     int left = 0, right = list.size() - 1;
     while (left <= right) {
         int mid = left + (right - left) / 2;
@@ -125,5 +125,11 @@ void CustomList::merge(int left, int mid, int right) {
     }
     while (j < right_half.size()) {
         list[k++] = right_half[j++];
+    }
+}
+
+void CustomList::check_not_empty() const {
+    if (list.empty()) {
+        throw std::out_of_range("List is empty");
     }
 }

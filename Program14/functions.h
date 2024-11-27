@@ -21,7 +21,9 @@ public:
 
 private:
     std::vector<int> list;
+    bool is_sorted = false;
 
+    void check_not_empty() const;
     void merge_sort_recursive(int left, int right);
     void merge(int left, int mid, int right);
 };

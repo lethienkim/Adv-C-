@@ -1,41 +1,73 @@
 #include "functions.h"
+#include <vector>
+#include <string>
+
+int get_menu_choice(const std::vector<std::string>& options) {
+    int choice;
+    std::cout << "\nChoose an operation:\n";
+    for (size_t i = 0; i < options.size(); ++i) {
+        std::cout << i + 1 << ". " << options[i] << "\n";
+    }
+    std::cin >> choice;
+    if (choice < 1 || choice > static_cast<int>(options.size())) {
+        std::cout << "Invalid choice! Try again.\n";
+        return get_menu_choice(options);
+    }
+    return choice;
+}
 
 int main() {
     CustomList custom_list;
-    int choice, value, index;
+    std::vector<std::string> list_operations = {
+        "Insert at the beginning of the list",
+        "Insert at the end of the list",
+        "Delete from the beginning of the list",
+        "Delete from the end of the list",
+        "Insert at a location (index value) in the list",
+        "Delete a node from the list based on its value",
+        "End list processing"
+    };
+
+    std::vector<std::string> search_sort_operations = {
+        "Linear search",
+        "Selection sort",
+        "Merge sort",
+        "Binary search",
+        "End search/sort operations"
+    };
 
     while (true) {
-        std::cout << "\nChoose an operation:\n";
-        std::cout << "1. Insert at the beginning of the list\n";
-        std::cout << "2. Insert at the end of the list\n";
-        std::cout << "3. Delete from the beginning of the list\n";
-        std::cout << "4. Delete from the end of the list\n";
-        std::cout << "5. Insert at a location (index value) in the list\n";
-        std::cout << "6. Delete a node from the list based on its value\n";
-        std::cout << "7. End list processing\n";
-        std::cin >> choice;
-
+        int choice = get_menu_choice(list_operations);
         if (choice == 7) break;
 
         try {
+            int value, index;
             switch (choice) {
             case 1:
                 std::cout << "Enter a value: ";
                 std::cin >> value;
                 custom_list.insert_beginning(value);
+                std::cout << "Updated list: ";
+                custom_list.print_list();
                 break;
             case 2:
                 std::cout << "Enter a value: ";
                 std::cin >> value;
                 custom_list.insert_end(value);
+                std::cout << "Updated list: ";
+                custom_list.print_list();
                 break;
             case 3:
                 custom_list.delete_beginning();
-                std::cout << "Deleted from the beginning\n";
+                std::cout << "Deleted from the beginning.\n";
+                std::cout << "Updated list: ";
+                custom_list.print_list();
                 break;
             case 4:
                 custom_list.delete_end();
-                std::cout << "Deleted from the end\n";
+                std::cout << "Deleted from the end.\n";
+                std::cout << "Updated list: ";
+                custom_list.print_list();
                 break;
             case 5:
                 std::cout << "Enter an index: ";
@@ -43,14 +75,16 @@ int main() {
                 std::cout << "Enter a value: ";
                 std::cin >> value;
                 custom_list.insert_at(index, value);
+                std::cout << "Updated list: ";
+                custom_list.print_list();
                 break;
             case 6:
                 std::cout << "Enter a value: ";
                 std::cin >> value;
                 custom_list.delete_value(value);
+                std::cout << "Updated list: ";
+                custom_list.print_list();
                 break;
-            default:
-                std::cout << "Invalid choice!\n";
             }
         }
         catch (const std::exception& e) {
@@ -59,17 +93,11 @@ int main() {
     }
 
     while (true) {
-        std::cout << "\nChoose a search/sort operation:\n";
-        std::cout << "1. Linear search\n";
-        std::cout << "2. Selection sort\n";
-        std::cout << "3. Merge sort\n";
-        std::cout << "4. Binary search\n";
-        std::cout << "5. End search/sort operations\n";
-        std::cin >> choice;
-
+        int choice = get_menu_choice(search_sort_operations);
         if (choice == 5) break;
 
         try {
+            int value, index;
             switch (choice) {
             case 1:
                 std::cout << "Enter a value to search: ";
@@ -86,10 +114,14 @@ int main() {
                 custom_list.selection_sort();
                 std::cout << "List sorted: ";
                 custom_list.print_list();
+                std::cout << "Updated list: ";
+                custom_list.print_list();
                 break;
             case 3:
                 custom_list.merge_sort();
                 std::cout << "List sorted: ";
+                custom_list.print_list();
+                std::cout << "Updated list: ";
                 custom_list.print_list();
                 break;
             case 4:
@@ -103,8 +135,6 @@ int main() {
                     std::cout << "Value not found\n";
                 }
                 break;
-            default:
-                std::cout << "Invalid choice!\n";
             }
         }
         catch (const std::exception& e) {

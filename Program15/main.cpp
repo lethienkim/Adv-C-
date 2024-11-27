@@ -1,18 +1,36 @@
 #include "string_operations.h"
-int main() {
+#include <vector>
+#include <limits>
+
+// Helper function to display menu
+int displayMenu(const std::vector<std::string>& options) {
+    std::cout << "\nChoose an operation:\n";
+    for (size_t i = 0; i < options.size(); ++i) {
+        std::cout << i + 1 << ". " << options[i] << "\n";
+    }
     int choice;
+    std::cin >> choice;
+    return choice;
+}
+
+// Helper function to clear input buffer
+void clearInputBuffer() {
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+int main() {
+    std::vector<std::string> options = {
+        "Assign values to strings",
+        "Concatenate strings",
+        "Compare portions of strings",
+        "Display string forward",
+        "Display string reverse",
+        "Demonstrate I/O streams",
+        "Exit"
+    };
 
     while (true) {
-        std::cout << "\nChoose an operation:\n";
-        std::cout << "1. Assign values to strings\n";
-        std::cout << "2. Concatenate strings\n";
-        std::cout << "3. Compare portions of strings\n";
-        std::cout << "4. Display string forward\n";
-        std::cout << "5. Display string reverse\n";
-        std::cout << "6. Demonstrate I/O streams\n";
-        std::cout << "7. Exit\n";
-        std::cin >> choice;
-
+        int choice = displayMenu(options);
         if (choice == 7) break;
 
         try {
@@ -26,27 +44,27 @@ int main() {
             case 3:
                 compareStringPortions();
                 break;
-            case 4:
-            {
+            case 4: {
                 std::string str;
                 std::cout << "Enter a string: ";
-                std::cin >> str;
+                clearInputBuffer();
+                std::getline(std::cin, str);
                 displayStringForward(str);
+                break;
             }
-            break;
-            case 5:
-            {
+            case 5: {
                 std::string str;
                 std::cout << "Enter a string: ";
-                std::cin >> str;
+                clearInputBuffer();
+                std::getline(std::cin, str);
                 displayStringReverse(str);
+                break;
             }
-            break;
             case 6:
                 demonstrateIOStreams();
                 break;
             default:
-                std::cout << "Invalid choice!\n";
+                std::cout << "Invalid choice! Try again.\n";
             }
         }
         catch (const std::exception& e) {
