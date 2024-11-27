@@ -1,0 +1,3 @@
+This program provided insights into implementing list operations and handling edge cases.
+It was interesting to manage exceptions and maintain smooth user interaction.
+Sorting and searching techniques further enhanced the learning experience.
