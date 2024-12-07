@@ -1,3 +1,4 @@
+
 #include "string_operations.h"
 
 // Helper function to iterate over a string
@@ -34,17 +35,18 @@ void assignValuesToStrings() {
 void concatenateStrings() {
     std::string str1, str2;
     std::cout << "Enter the first string: ";
-    std::cin.ignore();
+    std::cin.ignore(); // Clear any leftover newline in the input buffer
     std::getline(std::cin, str1);
     std::cout << "Enter the second string: ";
     std::getline(std::cin, str2);
 
-    std::string concatenated1 = str1 + str2;
-    str1 += str2;
+    std::string concatenated1 = str1 + " " + str2;
+    str1 += " " + str2; // Corrected concatenation using +=
 
     std::cout << "Concatenation using +: " << concatenated1 << "\n";
     std::cout << "Concatenation using +=: " << str1 << "\n";
 }
+
 
 // Enables user to select portions of two strings to compare with one another and compare those portions
 void compareStringPortions() {
