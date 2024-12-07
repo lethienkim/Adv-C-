@@ -18,13 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cstring_functions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="character_handling.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bitwise_operations.cpp">
+    <ClCompile Include="operations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
